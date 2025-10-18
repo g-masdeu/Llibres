@@ -32,7 +32,7 @@ BookManager permite gestionar libros y comentarios en una aplicación web, apren
 - PHP (puro o framework educativo)
 - MVC como patrón de diseño
 - HTML, CSS y JavaScript para la interfaz
-- Base de datos (MySQL, SQLite u otra)
+- Base de datos MySQL
 - Gestión de sesiones y roles de usuario
 
 ## Objetivo del proyecto
