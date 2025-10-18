@@ -35,6 +35,12 @@ BookManager permite gestionar libros y comentarios en una aplicación web, apren
 - Base de datos MySQL
 - Gestión de sesiones y roles de usuario
 
+## Imágenes
+<img width="1296" height="809" alt="image" src="https://github.com/user-attachments/assets/3237086e-7a9a-4c90-a802-97c90cf65f9c" />
+<img width="1471" height="859" alt="image" src="https://github.com/user-attachments/assets/8f969234-5adb-4972-a9f0-e4af2be4d757" />
+<img width="1439" height="852" alt="image" src="https://github.com/user-attachments/assets/12b4c12f-f0d0-4e39-afec-ad1e8bbdf0c4" />
+<img width="1352" height="657" alt="image" src="https://github.com/user-attachments/assets/343d86f3-73ff-4fbd-9d72-3ae8c605c9f9" />
+
 ## Objetivo del proyecto
 
 - Aprender y practicar el patrón **MVC**
