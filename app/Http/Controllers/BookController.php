@@ -56,10 +56,11 @@ class BookController extends Controller
         $age = $birthDate->age;
         $category = Category::findOrFail($id);
 
-        // Agafem els llibres que tinguin edat minima < edat usuari
+        // Agafem els llibres que tinguin edat minima < edat usuari I que siguin de la categoria seleccionada
         $books = Book::with(['category'])
             ->withCount('reviews')
             ->withAvg('reviews', 'rating')
+            ->where('category_id', $id)  // Filtrem per categoria
             ->where('min_age', '<=', $age)
             ->paginate(8);
 

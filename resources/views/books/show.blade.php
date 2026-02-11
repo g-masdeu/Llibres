@@ -52,22 +52,123 @@
                                     style="max-height: 400px; object-fit: cover; transition: transform 0.3s ease;">
 
                                 <!-- Quick Stats -->
-                                <div class="row mt-4 g-2">
-                                    <div class="col-6">
-                                        <div class="bg-primary bg-opacity-10 rounded-3 p-3">
-                                            <i class="fas fa-euro-sign text-primary mb-2"></i>
-                                            <div class="fw-bold text-primary">{{ number_format($book->price, 2) }}€</div>
-                                            <small class="text-muted">Preu</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="bg-warning bg-opacity-10 rounded-3 p-3">
-                                            <i class="fas fa-child text-warning mb-2"></i>
-                                            <div class="fw-bold text-warning">{{ $book->min_age }}+</div>
-                                            <small class="text-muted">Edat mín.</small>
+                                <div class="row mt-4 g-3">
+                                    <div class="col-12">
+                                        <div class="stat-card age-card">
+                                            <div class="stat-icon">
+                                                <i class="fas fa-user-shield"></i>
+                                            </div>
+                                            <div class="stat-content">
+                                                <div class="stat-label">Edat mínima</div>
+                                                <div class="stat-value">{{ $book->min_age }}<span class="age-plus"> anys o més</span></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                
+                                <style>
+                                    .stat-card {
+                                        position: relative;
+                                        padding: 1.5rem;
+                                        border-radius: 18px;
+                                        overflow: hidden;
+                                        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+                                        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                                        cursor: default;
+                                        height: 100%;
+                                    }
+                                    
+                                    .price-card {
+                                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                        color: white;
+                                    }
+                                    
+                                    .age-card {
+                                        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+                                        color: white;
+                                    }
+                                    
+                                    .stat-card:hover {
+                                        transform: translateY(-5px) scale(1.02);
+                                        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+                                    }
+                                    
+                                    .stat-card::before {
+                                        content: '';
+                                        position: absolute;
+                                        top: -50%;
+                                        right: -50%;
+                                        width: 200%;
+                                        height: 200%;
+                                        background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+                                        transition: all 0.6s ease;
+                                        opacity: 0;
+                                    }
+                                    
+                                    .stat-card:hover::before {
+                                        opacity: 1;
+                                        top: -30%;
+                                        right: -30%;
+                                    }
+                                    
+                                    .stat-icon {
+                                        font-size: 2rem;
+                                        margin-bottom: 0.8rem;
+                                        opacity: 0.9;
+                                        animation: float 3s ease-in-out infinite;
+                                    }
+                                    
+                                    @keyframes float {
+                                        0%, 100% { transform: translateY(0px); }
+                                        50% { transform: translateY(-8px); }
+                                    }
+                                    
+                                    .stat-content {
+                                        position: relative;
+                                        z-index: 1;
+                                    }
+                                    
+                                    .stat-label {
+                                        font-size: 0.75rem;
+                                        text-transform: uppercase;
+                                        letter-spacing: 1.2px;
+                                        font-weight: 600;
+                                        margin-bottom: 0.5rem;
+                                        opacity: 0.95;
+                                    }
+                                    
+                                    .stat-value {
+                                        font-size: 2rem;
+                                        font-weight: 800;
+                                        line-height: 1;
+                                        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+                                    }
+                                    
+                                    .currency, .age-plus {
+                                        font-size: 1.2rem;
+                                        font-weight: 600;
+                                        margin-left: 0.2rem;
+                                    }
+                                    
+                                    /* Responsive */
+                                    @media (max-width: 768px) {
+                                        .stat-card {
+                                            padding: 1.2rem;
+                                        }
+                                        
+                                        .stat-icon {
+                                            font-size: 1.5rem;
+                                        }
+                                        
+                                        .stat-value {
+                                            font-size: 1.6rem;
+                                        }
+                                        
+                                        .currency, .age-plus {
+                                            font-size: 1rem;
+                                        }
+                                    }
+                                </style>
                             </div>
                         </div>
                     </div>

@@ -94,6 +94,10 @@
                             Categories
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownCategoriesPublic">
+                            <a class="dropdown-item font-weight-bold" href="{{ route('books.index') }}">
+                                📚 Totes les categories
+                            </a>
+                            <div class="dropdown-divider"></div>
                             @foreach ($categories as $category)
                                 <a class="dropdown-item" href="{{ route('books.category', $category->id) }}">
                                     {{ $category->name }}

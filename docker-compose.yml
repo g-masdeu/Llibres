@@ -1,0 +1,61 @@
+services:
+  # Nginx Service
+  nginx:
+    image: nginx:alpine
+    container_name: llibres_nginx
+    restart: unless-stopped
+    ports:
+      - "8085:80"
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - llibres_network
+
+  # PHP-FPM Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: llibres_app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+    networks:
+      - llibres_network
+    depends_on:
+      - mysql
+
+  # MySQL Service
+  mysql:
+    image: mysql:8.0
+    container_name: llibres_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    networks:
+      - llibres_network
+
+networks:
+  llibres_network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local
